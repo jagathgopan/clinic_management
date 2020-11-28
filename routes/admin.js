@@ -7,8 +7,17 @@ router.get('/', function (req, res, next) {
   res.render('admin/adminLogin');
 });
 router.post('/admin-login', (req, res) => {
-  adminHelpers.doLogin().then((response) => {
-    res.render('admin/adminPanel');
-  })
+
+  adminHelpers.adminLogin(req.body).then((response)=>{
+    if(response.status){
+     res.render('admin/adminHeader')
+    }else{
+      alert('invalid entry')
+      res.redirect('/admin')
+    }
+    })
+})
+router.get('/doctor-list',(req,res)=>{
+  res.render('admin/doctorList')
 })
 module.exports = router;
