@@ -10,9 +10,10 @@ router.post('/admin-login', (req, res) => {
 
   adminHelpers.adminLogin(req.body).then((response)=>{
     if(response.status){
-     res.render('admin/adminHeader')
+     res.render('layout/layout')
     }else{
-      alert('invalid entry')
+      console.log("invalid password or userId");
+
       res.redirect('/admin')
     }
     })

@@ -6,15 +6,22 @@ var logger = require('morgan');
 
 var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
+var hbs=require('express-handlebars')
 var app = express();
 
 var db=require('./config/connection');
+const { handlebars } = require('hbs');
 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
 
+app.set('view engine', 'hbs');
+/* app.engine( 'hbs', hbs( {
+  extname: 'hbs',
+  defaultLayout: 'layout',
+  layoutsDir: __dirname + '/views/layout/'
+})); */
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
