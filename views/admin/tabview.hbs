@@ -1,0 +1,144 @@
+<div id="preloader">
+  <div class="loader"></div>
+</div>
+
+<div class="page-container">
+
+  <div class="sidebar-menu">
+    <div class="sidebar-header">
+      <div class="logo">
+        <a href="index.html"><img src="/assets/images/icon/logo.png" alt="logo"></a>
+      </div>
+    </div>
+    <div class="main-menu">
+      <div class="menu-inner">
+        <nav>
+          <ul class="metismenu" id="menu">
+            <li class="active">
+              <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>dashboard</span></a>
+              <div class="tab">
+                <button class="tablinks  text-align: center " onclick="openCity(event, 'London')" id="defaultOpen">Doctors</button>
+                <button class="tablinks" onclick="openCity(event, 'Paris')">Patients</button>
+                <button class="tablinks" onclick="openCity(event, 'Tokyo')">Appointments</button>
+              </div>
+
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-content">
+
+
+    <div class="page-title-area">
+      <div class="row align-items-center">
+        <div class="col-sm-6">
+          <div class="breadcrumbs-area clearfix">
+            <h4 class="page-title pull-left">Welcome to dashboard !! </h4>
+            <ul class="breadcrumbs pull-left">
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-6 clearfix">
+          <div class="user-profile pull-right">
+            <img class="avatar user-thumb" src="/assets/images/author/avatar.png" alt="avatar">
+            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Admin<i class="fa fa-angle-down"></i></h4>
+            <div class="dropdown-menu">
+              <!--   <a class="dropdown-item" href="#">Message</a>
+                                <a class="dropdown-item" href="#">Settings</a> -->
+              <a class="dropdown-item" href="#">Log Out</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div id="London" class="tabcontent">
+      <h3>Doctors</h3>
+      <p></p>
+    </div>
+
+    <div id="Paris" class="tabcontent">
+      <h3>Patients</h3>
+      <p>Here is patient list</p>
+    </div>
+
+    <div id="Tokyo" class="tabcontent">
+      <h3>Appointments </h3>
+      <p>The appointments</p>
+    </div>
+
+    <script>
+      function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+
+      // Get the element with id="defaultOpen" and click on it
+      document.getElementById("defaultOpen").click();
+    </script>
+    <style>
+      * {
+        box-sizing: border-box
+      }
+
+      body {
+        font-family: "Lato", sans-serif;
+      }
+
+      /* Style the tab */
+      .tab {
+        float: left;
+        background-color: #343942;
+        width: 30%;
+        height: 300px;
+        color: #FFFFFF;
+      }
+
+      /* Style the buttons inside the tab */
+      .tab button {
+        display: block;
+        background-color: #303641;
+        color: white;
+        padding: 25px 35px;
+        width: 100%;
+        border: none;
+        outline: none;
+        text-align: left;
+        cursor: pointer;
+        transition: 0.3s;
+        font-size: 17px;
+      }
+
+      /* Change background color of buttons on hover */
+      .tab button:hover {
+        background-color: #303641;
+      }
+
+      /* Create an active/current "tab button" class */
+      .tab button.active {
+        background-color: #303641;
+      }
+
+      /* Style the tab content */
+      .tabcontent {
+        float: left;
+        padding: 0px 12px;
+        border: 1px solid #ccc;
+        width: 100%;
+        border-left: none;
+        height: 100%;
+      }
+    </style>

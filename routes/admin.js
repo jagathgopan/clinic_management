@@ -3,7 +3,7 @@ var router = express.Router();
 const adminHelpers = require('../helpers/admin-helpers');
 
 /* GET users listing. */
-router.get('/', function (req, res, next) {
+router.get('/', function (req, res) {
   res.render('admin/adminLogin');
 });
 router.post('/admin-login', (req, res) => {
@@ -18,7 +18,7 @@ router.post('/admin-login', (req, res) => {
     }
     })
 })
-router.get('/doctor-list',(req,res)=>{
-  res.render('admin/doctorList')
+router.get('/tab-view',(req,res)=>{
+  res.render('admin/tabview');
 })
 module.exports = router;
