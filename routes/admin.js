@@ -21,4 +21,13 @@ router.post('/admin-login', (req, res) => {
 router.get('/tab-view',(req,res)=>{
   res.render('admin/tabview');
 })
+router.get('/add-doctors',(req,res)=>{
+  res.render('admin/addDoctor');
+})
+router.post('/add-doctors',(req,res)=>{
+  console.log(req.body);
+  adminHelpers.addDoctors(req.body).then((response)=>{
+    res.render('admin/addDoctor')
+  })
+})
 module.exports = router;

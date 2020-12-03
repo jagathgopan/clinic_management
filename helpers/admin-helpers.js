@@ -23,12 +23,17 @@ module.exports = {
        }
         })
         
+    },
+    addDoctors:(doctors)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.DOCTORS_LIST).insertOne(doctors).then((data)=>{
+                resolve(true)
+            })
+
+        })
+        
     }
 
     }
 
-     /*  if(details.name=='jagathgopan304@gmail.com' &&  details.password =='123'){
-               resolve(true)
-           }else{
-               resolve(false)
-           } */
+     
