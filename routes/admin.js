@@ -10,7 +10,9 @@ router.post('/admin-login', (req, res) => {
 
   adminHelpers.adminLogin(req.body).then((response)=>{
     if(response.status){
-     res.render('admin/adminpanel')
+      adminHelpers.getAllDoctors().then((doctors)=>{
+        res.render('admin/tabview',{doctors});
+      })
     }else{
       console.log("invalid password or userId");
 
@@ -18,12 +20,12 @@ router.post('/admin-login', (req, res) => {
     }
     })
 })
-router.get('/tab-view',(req,res)=>{
+/* router.get('/tab-view',(req,res)=>{
   adminHelpers.getAllDoctors().then((doctors)=>{
     res.render('admin/tabview',{doctors});
   })
  
-})
+}) */
 router.get('/add-doctors',(req,res)=>{
   res.render('admin/addDoctor');
 })
