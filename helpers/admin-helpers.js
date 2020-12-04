@@ -26,12 +26,19 @@ module.exports = {
     },
     addDoctors:(doctors)=>{
         return new Promise((resolve,reject)=>{
-            db.get().collection(collection.DOCTORS_LIST).insertOne(doctors).then((data)=>{
-                resolve(true)
+            db.get().collection(collection. DOCTORS_COLLECTION).insertOne(doctors).then((data)=>{
+                resolve(data.ops[0]._id)
             })
 
         })
         
+    },
+    getAllDoctors:()=>{
+        return new Promise (async(resolve,reject)=>{
+            let doctors=await db.get().collection(collection. DOCTORS_COLLECTION).find().toArray()
+            resolve(doctors)
+        })
+
     }
 
     }

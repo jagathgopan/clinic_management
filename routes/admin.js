@@ -19,15 +19,29 @@ router.post('/admin-login', (req, res) => {
     })
 })
 router.get('/tab-view',(req,res)=>{
-  res.render('admin/tabview');
+  adminHelpers.getAllDoctors().then((doctors)=>{
+    res.render('admin/tabview',{doctors});
+  })
+ 
 })
 router.get('/add-doctors',(req,res)=>{
   res.render('admin/addDoctor');
 })
 router.post('/add-doctors',(req,res)=>{
   console.log(req.body);
-  adminHelpers.addDoctors(req.body).then((response)=>{
+  adminHelpers.addDoctors(req.body).then((id)=>{
+    let image=req.files.Image
+  console.log(id)
+  image.mv('./public/doctors-images/'+id+'.jpg',(err,done)=>{
+    if(!err){
+      res.render('admin/addDoctor')
+    }else{
+      console.log(err)
+    }
     res.render('admin/addDoctor')
+  })
+  
+   
   })
 })
 module.exports = router;
