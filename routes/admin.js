@@ -5,10 +5,10 @@ const adminHelpers = require('../helpers/admin-helpers');
 /* GET users listing. */
 router.get('/', function (req, res) {
   if(req.session.loggedIn){
-    res.redirect('admin/tabview')
+    res.redirect('admin/tabview',{nav:true})
   }else{
 
-    res.render('admin/adminLogin',{'loginErr':req.session.loginErr});
+    res.render('admin/adminLogin',{'loginErr':req.session.loginErr,nav:false});
     req.session.loginErr=false
   }
   
@@ -22,12 +22,12 @@ router.post('/admin-login', (req, res) => {
       adminHelpers.getAllDoctors().then((doctors)=>{
         let admin=req.session.admin
         console.log(admin);
-        res.render('admin/tabview',{doctors,admin});
+        res.render('admin/tabview',{doctors,admin,nav:true});
       })
     }else{
       console.log("invalid password or userId");
       req.session.loginErr=true
-      res.redirect('/admin')
+      res.redirect('/admin',{nav:false})
     }
     })
 })
@@ -38,7 +38,7 @@ router.post('/admin-login', (req, res) => {
  
 }) */
 router.get('/add-doctors',(req,res)=>{
-  res.render('admin/addDoctor');
+  res.render('admin/addDoctor',{nav:true});
 })
 router.post('/add-doctors',(req,res)=>{
   console.log(req.body);
@@ -47,11 +47,11 @@ router.post('/add-doctors',(req,res)=>{
   console.log(id)
   image.mv('./public/doctors-images/'+id+'.jpg',(err,done)=>{
     if(!err){
-      res.render('admin/addDoctor')
+      res.render('admin/tabview',{nav:true})
     }else{
       console.log(err)
     }
-    res.render('admin/addDoctor')
+    res.render('admin/tabview',{nav:true})
   })
   
    
@@ -59,6 +59,6 @@ router.post('/add-doctors',(req,res)=>{
 })
 router.get('/logout',(req,res)=>{
   req.session.destroy()
-  res.redirect('/admin')
+  res.redirect('/admin',{nav:false})
 })
 module.exports = router;
