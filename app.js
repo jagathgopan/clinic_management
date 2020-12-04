@@ -12,6 +12,7 @@ var fileUpload=require('express-fileupload')
 
 var db=require('./config/connection');
 const { handlebars } = require('hbs');
+var session=require('express-session')
 
 
 // view engine setup
@@ -23,6 +24,7 @@ app.engine( 'hbs', hbs( {
   defaultLayout: 'layout',
   layoutsDir: __dirname + '/views/layout/'
 }));
+app.use(session({secret:"key",cookie:{maxAge:600000}}))
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

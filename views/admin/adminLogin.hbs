@@ -15,7 +15,9 @@
 		<div class="header">
 			<h1>Admin Login</h1>
 		</div>
-
+        {{#if loginErr}}
+        <P class="err text-danger">Invalid username or password</P>
+        {{/if}}
 		<div class="design-w3l">
 			<div class="mail-form-agile">
 				<form action="/admin/admin-login" method="POST">
